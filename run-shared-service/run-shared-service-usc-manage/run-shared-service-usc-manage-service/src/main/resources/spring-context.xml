@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd  
+http://www.springframework.org/schema/data/repository
+http://www.springframework.org/schema/data/repository/spring-repository.xsd
+http://www.springframework.org/schema/data/mongo
+http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+	<context:component-scan base-package="com.run" />
+	<!-- 读入配置属性文件 -->
+	<context:property-placeholder location="classpath:*.properties" />
+	<mongo:mongo-client id="ucs-mongo" host="@mongo.host@" port="@mongo.port@" credentials="@mongo.username@:@mongo.password@@usc" />
+	<mongo:db-factory id="usc-mongo-factory" mongo-ref="ucs-mongo" dbname="usc" />
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean id="ucsTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="usc-mongo-factory" />
+	</bean>
+	
+	<!-- <mongo:db-factory id="ucsMongoDbFactory" dbname="usc" host="" port="" 
+		username="" password="" /> -->
+
+</beans>

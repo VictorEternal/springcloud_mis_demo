@@ -1,0 +1,12 @@
+server:
+  display-name: 用户中心用户更改服务
+  port: 8800
+spring:
+  application:
+    name: 用户中心用户更改服务
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true

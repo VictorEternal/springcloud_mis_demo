@@ -1,0 +1,12 @@
+server:
+  display-name: 运维中心服务治理
+  port: 2000
+spring:
+  application:
+    name: 运维中心
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: true
+    register-with-eureka: true
