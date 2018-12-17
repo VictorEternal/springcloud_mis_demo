@@ -1,0 +1,281 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.0.RELEASE</version>
+		<relativePath />
+	</parent>
+
+	<groupId>com.run</groupId>
+	<artifactId>run-parent</artifactId>
+	<version>0.0.1</version>
+	<description>微服务平台的管理、描述文档，该POM文件为root文件</description>
+	<packaging>pom</packaging>
+	<inceptionYear>2017</inceptionYear>
+	<name>Run-Parent</name>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestone</id>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- 基础属性设置 -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- mongodb 连接设置 -->
+		<mongo.host>192.168.254.100</mongo.host>
+		<mongo.port>27017</mongo.port>
+		<mongo.username>root</mongo.username>
+		<mongo.password>123456</mongo.password>
+		<mongo.threads-allowed-to-block-for-connection-multiplier>10</mongo.threads-allowed-to-block-for-connection-multiplier>
+		<mongo.auto-connect-retry>false</mongo.auto-connect-retry>
+		<mongo.socket-keep-alive>false</mongo.socket-keep-alive>
+		<mongo.slave-ok>false</mongo.slave-ok>
+		<mongo.write-number>0</mongo.write-number>
+		<mongo.write-fsync>false</mongo.write-fsync>
+
+		<!-- redis链接配置 -->
+		<redis.host>192.168.254.100</redis.host>
+		<redis.port>6379</redis.port>
+		<redis.maxIdle>300</redis.maxIdle>
+		<redis.maxActive>300</redis.maxActive>
+		<redis.maxWait>1000</redis.maxWait>
+		<redis.testOnBorrow>true</redis.testOnBorrow>
+
+		<!-- 注册中心 -->
+		<eureka.client.service-url.defaultZone>http://localhost:1111/eureka
+			/</eureka.client.service-url.defaultZone>
+
+		<!-- rest服务端口 -->
+		<ucs_rest_writer_port>8888</ucs_rest_writer_port>
+		<ucs_rest_reader_port>8889</ucs_rest_reader_port>
+		<authz_rest_token_port>8890</authz_rest_token_port>
+		<sms_rest_port>8891</sms_rest_port>
+		<service_admin_rest_port>8892</service_admin_rest_port>
+		<ucs-manage_rest_port>8893</ucs-manage_rest_port>
+
+		<!-- 公共依赖包版本号 -->
+		<spting_boot_version>1.4.0.RELEASE</spting_boot_version>
+		<spting_cloud_version>Camden.SR3</spting_cloud_version>
+		<servlet_version>3.1.0</servlet_version>
+		<commons_pool_version>1.6</commons_pool_version>
+		<mybatis_version>3.2.3</mybatis_version>
+		<mysql_jdbc_version>6.0.5</mysql_jdbc_version>
+		<postgresql_jdbc_version>9.1-901.jdbc4</postgresql_jdbc_version>
+		<mongodb_version>2.14.3</mongodb_version>
+		<spring_data_mongodb>1.9.6.RELEASE</spring_data_mongodb>
+		<spring_data_redis>1.1.0.RELEASE</spring_data_redis>
+		<hbase_client_version>1.2.3</hbase_client_version>
+		<hive_jdbc_version>2.1.0</hive_jdbc_version>
+		<hadoop_client_version>2.7.1</hadoop_client_version>
+		<bouncycastle_version>1.55</bouncycastle_version>
+		<collections_version>3.2</collections_version>
+		<gson_version>2.8.0</gson_version>
+		<jackson_version>2.3.3</jackson_version>
+		<jackson_mapper_asl_version>1.9.12</jackson_mapper_asl_version>
+		<javax_annotation_version>1.2</javax_annotation_version>
+
+		<!-- 日志依赖包版本号 -->
+		<slf4j_version>1.6.2</slf4j_version>
+		<jcl_version>1.1</jcl_version>
+		<log4j_version>1.2.16</log4j_version>
+		<logback_version>1.0.6</logback_version>
+		<log4mongo_version>0.7.4</log4mongo_version>
+
+		<!-- 测试依赖包版本号 -->
+		<junit_version>4.10</junit_version>
+		<easymock_version>3.0</easymock_version>
+		<jmockit_version>0.999.8</jmockit_version>
+
+		<!-- JVM构建参数 -->
+		<argline>-server -Xms64m -Xmx64m -XX:PermSize=64m -XX:MaxPermSize=64m</argline>
+		<skip_maven_deploy>false</skip_maven_deploy>
+		<updateReleaseInfo>true</updateReleaseInfo>
+		<project.build.sourceEncoding>${file_encoding}</project.build.sourceEncoding>
+
+		<!-- Maven编译、打包等所需的JDK以及插件版本号 -->
+		<java_source_version>1.8</java_source_version>
+		<java_target_version>1.8</java_target_version>
+		<maven_compiler_plugin_version>2.3.2</maven_compiler_plugin_version>
+		<maven_source_plugin_version>2.1.1</maven_source_plugin_version>
+		<maven_jar_plugin_version>2.3.2</maven_jar_plugin_version>
+		<maven_war_plugin_version>2.1.1</maven_war_plugin_version>
+		<maven_install_plugin_version>2.3.1</maven_install_plugin_version>
+		<maven_deploy_plugin_version>2.7</maven_deploy_plugin_version>
+		<maven-surefire-plugin_version>2.17</maven-surefire-plugin_version>
+		<file_encoding>UTF-8</file_encoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Camden.SR3</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>${postgresql_jdbc_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongo-java-driver</artifactId>
+				<version>${mongodb_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-mongodb</artifactId>
+				<version>${spring_data_mongodb}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-redis</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>${javax_annotation_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>${jackson_mapper_asl_version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>${jackson_mapper_asl_version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<!-- Spring cloud -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- apache component -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+
+		<!-- google tool -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.23</version>
+		</dependency>
+
+		<!-- 测试jar包 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 日志包 -->
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging-api</artifactId>
+			<version>${jcl_version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+					<source>${java_source_version}</source>
+					<target>${java_target_version}</target>
+					<encoding>${file_encoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<issueManagement>
+		<system>jira</system>
+		<url />
+	</issueManagement>
+	<developers>
+		<developer>
+			<name>李颖超</name>
+			<id>liyingchao</id>
+			<email />
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+	<modules>
+		<module>run-maven</module>
+		<module>run-entity</module>
+		<module>run-tool</module>
+		<module>run-shared-service</module>
+		<module>run-platform-service</module>
+		<module>run-test</module>
+		<module>run-web-boss</module>
+		<module>run-ims</module>
+	</modules>
+</project>
