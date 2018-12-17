@@ -1,0 +1,12 @@
+server:
+  display-name: token服务
+  port: 8802
+spring:
+  application:
+    name: token服务
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false

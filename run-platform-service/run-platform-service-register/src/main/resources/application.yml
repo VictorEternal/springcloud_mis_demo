@@ -1,0 +1,15 @@
+server:
+  display-name: 注册中心
+  port: 1111
+spring:
+  application:
+    name: 注册中心
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  

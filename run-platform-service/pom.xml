@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.run</groupId>
+		<artifactId>run-parent</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>run-platform-service</artifactId>
+	<name>run-platform-service</name>
+	<description>微服务平台的平台层服务</description>
+	<packaging>pom</packaging>
+	<url>http://devops.locman.cn</url>
+	<inceptionYear>2017</inceptionYear>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.run</groupId>
+			<version>0.0.1</version>
+			<artifactId>run-tool</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.run</groupId>
+			<version>0.0.1</version>
+			<artifactId>run-entity</artifactId>
+		</dependency>
+	</dependencies>
+	<modules>
+		<module>run-platform-service-authz</module>
+		<module>run-platform-service-sms</module>
+		<module>run-platform-service-register</module>
+	</modules>
+</project>
