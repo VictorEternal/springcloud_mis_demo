@@ -1,0 +1,8 @@
+com\run\service\common\entity\constants\ResultMsgConstants.class
+com\run\service\common\entity\Result.class
+com\run\service\common\entity\ResultStatus.class
+com\run\service\common\entity\constants\ParamKeyConstants.class
+com\run\service\common\entity\constants\UcsApiUrlConstants.class
+com\run\Main.class
+com\run\service\common\entity\constants\ResultCodeConstants.class
+com\run\service\common\entity\constants\MongoConstants.class
